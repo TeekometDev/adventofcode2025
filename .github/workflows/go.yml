@@ -28,3 +28,13 @@ jobs:
       run: |
         cd day2
         go test -v
+
+    - name: Build Day 3
+      run: |
+        cd day3
+        go build -v
+
+    - name: Test Day 3
+      run: |
+        cd day3
+        go test -v
