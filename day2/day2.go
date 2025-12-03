@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 )
 
 func InvestigateRange_T1_async(rangeStr string, resultVal *uint64, waitGroup *sync.WaitGroup, mu *sync.Mutex) {
@@ -46,16 +47,21 @@ func InvestigateRange_T1(rangeStr string) uint64 {
 
 func SolveTask1_Sync(fileName string) uint64 {
 	content := ReadFile(fileName)
+	start := time.Now()
 	listOfRanges := strings.Split(content, ",")
 	var result uint64 = 0
 	for _, value := range listOfRanges {
 		result += InvestigateRange_T1(value)
 	}
+	end := time.Now()
+	duration := end.Sub(start)
+	fmt.Printf("Runtime w/o Multithreading: %v\n", duration.Seconds())
 	return result
 }
 
 func SolveTask1_Async(fileName string) uint64 {
 	content := ReadFile(fileName)
+	start := time.Now()
 	listOfRanges := strings.Split(content, ",")
 	var result uint64 = 0
 	var waitGroup sync.WaitGroup
@@ -65,6 +71,9 @@ func SolveTask1_Async(fileName string) uint64 {
 		go InvestigateRange_T1_async(value, &result, &waitGroup, &mu)
 	}
 	waitGroup.Wait()
+	end := time.Now()
+	duration := end.Sub(start)
+	fmt.Printf("Runtime w Multithreading: %v\n", duration.Seconds())
 	return result
 }
 
