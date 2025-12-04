@@ -11,6 +11,15 @@ func TestTask1(t *testing.T) {
 	}
 }
 
+func TestTask1MT(t *testing.T) {
+	got := SolveTask1MT("testfile")
+	want := 13
+
+	if got != want {
+		t.Errorf("Got %d and wanted %d", got, want)
+	}
+}
+
 func TestTask2(t *testing.T) {
 	got := SolveTask2("testfile")
 	want := 43
