@@ -29,7 +29,9 @@ func SolveTask2(fileName string) int {
 	start := time.Now()
 	nextMatrix := currMatrix
 	result := 0
+	iterationCount := 0
 	for {
+		iterationCount++
 		currRun := 0
 		// Iterate over the current Matrix
 		for rowI, row := range currMatrix {
@@ -50,7 +52,7 @@ func SolveTask2(fileName string) int {
 	}
 	end := time.Now()
 	duration := end.Sub(start)
-	fmt.Printf("Runtime P2: %v\n", duration.Seconds())
+	fmt.Printf("Runtime P2: %v, Iterations: %d\n", duration.Seconds(), iterationCount)
 	return result
 }
 
@@ -79,6 +81,8 @@ func main() {
 	res_T1 := SolveTask1("puzzle")
 	res_T1MT := SolveTask1MT("puzzle")
 	res_T2 := SolveTask2("puzzle")
+	res_T2sM := SolveTask2sameMatrix("puzzle")
 	fmt.Printf("Task 1: %d\nTask 2: %d\n", res_T1, res_T2)
 	fmt.Printf("MT - Task 1: %d\n", res_T1MT)
+	fmt.Printf("SM - Task 2: %d\n", res_T2sM)
 }
