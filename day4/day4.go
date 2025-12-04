@@ -6,8 +6,8 @@ import (
 )
 
 func SolveTask1(fileName string) int {
-	start := time.Now()
 	matrix := ReadFile(fileName)
+	start := time.Now()
 	result := 0
 	for rowI, row := range matrix {
 		for colI, element := range row {
@@ -25,8 +25,8 @@ func SolveTask1(fileName string) int {
 }
 
 func SolveTask2(fileName string) int {
-	start := time.Now()
 	currMatrix := ReadFile(fileName)
+	start := time.Now()
 	nextMatrix := currMatrix
 	result := 0
 	for {
@@ -77,6 +77,8 @@ func Task1Worker(matrix *[][]bool, row int, col int) bool {
 
 func main() {
 	res_T1 := SolveTask1("puzzle")
+	res_T1MT := SolveTask1MT("puzzle")
 	res_T2 := SolveTask2("puzzle")
 	fmt.Printf("Task 1: %d\nTask 2: %d\n", res_T1, res_T2)
+	fmt.Printf("MT - Task 1: %d\n", res_T1MT)
 }
