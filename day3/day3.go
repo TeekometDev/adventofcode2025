@@ -3,14 +3,19 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"time"
 )
 
 func SolveTask1(filename string) int {
 	lines := ReadFile(filename)
+	start := time.Now()
 	solution := 0
 	for _, line := range lines {
 		solution += ResolveLineT1(line)
 	}
+	end := time.Now()
+	duration := end.Sub(start)
+	fmt.Printf("Runtime P1: %v\n", duration.Seconds())
 	return solution
 }
 
@@ -34,10 +39,14 @@ func ResolveLineT1(line string) int {
 
 func SolveTask2(filename string) uint64 {
 	lines := ReadFile(filename)
+	start := time.Now()
 	var solution uint64 = 0
 	for _, line := range lines {
 		solution += ResolveLineT2(line)
 	}
+	end := time.Now()
+	duration := end.Sub(start)
+	fmt.Printf("Runtime P2: %v\n", duration.Seconds())
 	return solution
 }
 
@@ -81,5 +90,7 @@ func ShiftSymbols(symbolList *[]byte, newSymbol byte) {
 func main() {
 	res_T1 := SolveTask1("puzzle")
 	res_T2 := SolveTask2("puzzle")
+	res_T2MT := SolveTask2MT("puzzle")
 	fmt.Printf("Task 1: %d\nTask 2: %d\n", res_T1, res_T2)
+	fmt.Printf("Task 2MT: %d\n", res_T2MT)
 }

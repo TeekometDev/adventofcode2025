@@ -56,6 +56,15 @@ func TestTask2(t *testing.T) {
 	}
 }
 
+func TestTask2MT(t *testing.T) {
+	got := SolveTask2MT("testfile")
+	const want uint64 = 3121910778619
+
+	if got != want {
+		t.Errorf("Expected %d and got %d", want, got)
+	}
+}
+
 func TestTask2BasicWorkingExampleL1(t *testing.T) {
 	got := ResolveLineT2("987654321111111")
 	const want uint64 = 987654321111
