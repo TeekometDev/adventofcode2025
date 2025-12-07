@@ -5,10 +5,12 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func SolveTask1(filename string) int {
 	lines := ReadFile(filename)
+	start := time.Now()
 	var freshItemRanges [][]int
 	result := 0
 	idReg, _ := regexp.Compile("^[0-9]+$")
@@ -26,11 +28,15 @@ func SolveTask1(filename string) int {
 			}
 		}
 	}
+	end := time.Now()
+	duration := end.Sub(start)
+	fmt.Printf("Runtime P1: %v\n", duration.Seconds())
 	return result
 }
 
 func SolveTask2(filename string) int {
 	lines := ReadFile(filename)
+	start := time.Now()
 	var freshItemRanges [][]int
 	result := 0
 	rangeReg, _ := regexp.Compile("^[0-9]+-[0-9]+$")
@@ -46,6 +52,9 @@ func SolveTask2(filename string) int {
 	for _, element := range freshItemRanges {
 		result += element[1] - element[0] + 1
 	}
+	end := time.Now()
+	duration := end.Sub(start)
+	fmt.Printf("Runtime P2: %v\n", duration.Seconds())
 	return result
 }
 
